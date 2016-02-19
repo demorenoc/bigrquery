@@ -79,6 +79,12 @@ db_has_table.bigquery <- function(con, table) {
 }
 
 #' @export
+#' @importFrom dplyr db_drop_table
+db_drop_table.bigquery <- function(con, table) {
+  delete_table(con$project, con$dataset, table)
+}
+
+#' @export
 #' @importFrom dplyr db_query_fields
 db_query_fields.bigquery <- function(con, sql) {
   info <- get_table(con$project, con$dataset, sql)
